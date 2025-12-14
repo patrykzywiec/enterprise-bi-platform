@@ -94,6 +94,10 @@ enterprise-bi-platform/
 │   ├── rls.md
 │   └── screenshots/
 ```
+## Source Data
+
+This repository contains a **small representative sample** of the source data.
+The full dataset is stored externally and used only for data processing in Spark.
 
 ---
 
