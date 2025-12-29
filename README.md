@@ -73,6 +73,8 @@ Raw CSV files
 * Optimized for analytical queries and BI tools
 
 ---
+Spark transformations are lazily evaluated. The pipeline is executed only when an action (e.g. write to Delta table) is triggered.
+---
 
 ## Project Structure
 
