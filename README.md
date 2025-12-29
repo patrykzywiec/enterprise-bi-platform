@@ -61,6 +61,7 @@ Raw CSV files
 * Purpose: traceability and auditability
 
 ### 🥈 Silver (Cleaned)
+The Silver layer focuses on data quality, schema standardization, and business-ready transformations such as deduplication, currency normalization, and date enrichment.
 
 * Data type casting
 * Basic data quality rules
