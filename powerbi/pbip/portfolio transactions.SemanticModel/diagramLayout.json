@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1086,
+            "y": 19.5
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "90f06c32-9baa-402a-9c08-906130dfa9ba",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334,
+            "y": -35.5
+          },
+          "nodeIndex": "customer_activity",
+          "nodeLineageTag": "09671391-b13f-400b-8b15-35d3e96898f8",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 26.5
+          },
+          "nodeIndex": "merchant_performance",
+          "nodeLineageTag": "20fdf9c5-2a6a-463f-b71e-b9656713f5cb",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 50.5
+          },
+          "nodeIndex": "revenue_trend",
+          "nodeLineageTag": "44c4d553-f3f6-4150-a22b-81cbb0943fc0",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": -37.5
+          },
+          "nodeIndex": "rfm_segments",
+          "nodeLineageTag": "33854aeb-6409-4150-81a7-784e0d437571",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

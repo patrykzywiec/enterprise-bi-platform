@@ -1,0 +1,114 @@
+table dim_date
+	lineageTag: 90f06c32-9baa-402a-9c08-906130dfa9ba
+
+	column date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 40085634-ac89-4bb1-ac00-d20ade6d766f
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: dffb57b5-6522-442e-bec4-36ad4ac33055
+			defaultHierarchy: LocalDateTable_248ed4d2-54ea-4987-8ee2-2ac8bca95fbb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column date_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 6dfa0d15-7395-4232-8de3-cf99dff38e8c
+		summarizeBy: sum
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 63fb9185-212a-4c97-83c6-7437118fffc0
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: a5193003-9242-47f0-8827-890c65e787b0
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: ec859c94-310c-4f5c-8a66-bea520be27a8
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		dataType: int64
+		formatString: 0
+		lineageTag: 33aa394f-fe26-4dee-8985-f5a33919cb32
+		summarizeBy: sum
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: e06a0664-a231-4865-99cf-e374ee194d71
+		summarizeBy: sum
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: d9aa7991-c094-43b0-87f1-619bce519c75
+		summarizeBy: sum
+		sourceColumn: week_of_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 01ca1a16-e1d7-49b8-9865-a203eda78a5e
+		summarizeBy: sum
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1f8d3eac-b9bd-4bcd-a693-1000fe0c2556
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-e6ab3251-25b3.cloud.databricks.com", "/sql/1.0/warehouses/3f9c096074ad72f0", [Catalog = "", Database = ""]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    gold_Schema = workspace_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_date_Table = gold_Schema{[Name="dim_date",Kind="Table"]}[Data]
+				in
+				    dim_date_Table
+
+	annotation PBI_ResultType = Table
+

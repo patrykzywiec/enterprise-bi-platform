@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pl-PL
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["dim_date","customer_activity","merchant_performance","revenue_trend","rfm_segments"]
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DaxQueryView_Desktop","DevMode"]
+
+ref table dim_date
+ref table DateTableTemplate_517352d2-2ce9-43e4-bf81-27d9de110598
+ref table LocalDateTable_248ed4d2-54ea-4987-8ee2-2ac8bca95fbb
+ref table customer_activity
+ref table merchant_performance
+ref table revenue_trend
+ref table rfm_segments
+ref table LocalDateTable_105090eb-cd71-4e25-93fa-8a5f95638d32
+
+ref cultureInfo en-US
+

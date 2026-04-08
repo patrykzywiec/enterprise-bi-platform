@@ -1,0 +1,90 @@
+table merchant_performance
+	lineageTag: 20fdf9c5-2a6a-463f-b71e-b9656713f5cb
+
+	column merchant_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 08fe99c0-e9f1-47b7-b16f-41b88d4ec3f9
+		summarizeBy: sum
+		sourceColumn: merchant_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a8520b26-b636-4b59-89a2-e1091c689c5e
+		summarizeBy: sum
+		sourceColumn: merchant_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_city
+		dataType: string
+		lineageTag: 841fa917-4abb-45da-a235-9baa4f61b6a0
+		summarizeBy: none
+		sourceColumn: merchant_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_state
+		dataType: string
+		lineageTag: b6585e23-fa4d-45e3-9571-278703533af8
+		summarizeBy: none
+		sourceColumn: merchant_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column mcc
+		dataType: int64
+		formatString: 0
+		lineageTag: 78e2bff5-1cb3-4fdb-9437-1ada349e7f3d
+		summarizeBy: sum
+		sourceColumn: mcc
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_revenue
+		dataType: double
+		lineageTag: 639c9d4c-8317-4956-a383-4ad5014993d4
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column transaction_count
+		dataType: int64
+		formatString: 0
+		lineageTag: d9aeb720-4ed8-4423-a6bc-03f82bd51fae
+		summarizeBy: sum
+		sourceColumn: transaction_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_ticket
+		dataType: double
+		lineageTag: 18a9dbba-f0f7-4bfd-87cd-128e37f7f73a
+		summarizeBy: sum
+		sourceColumn: avg_ticket
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition merchant_performance = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-e6ab3251-25b3.cloud.databricks.com", "/sql/1.0/warehouses/3f9c096074ad72f0", [Catalog = "", Database = ""]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    analytics_Schema = workspace_Database{[Name="analytics",Kind="Schema"]}[Data],
+				    dashboard_merchant_performance_Table = analytics_Schema{[Name="dashboard_merchant_performance",Kind="Table"]}[Data]
+				in
+				    dashboard_merchant_performance_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,16 @@
+relationship dffb57b5-6522-442e-bec4-36ad4ac33055
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_date.date
+	toColumn: LocalDateTable_248ed4d2-54ea-4987-8ee2-2ac8bca95fbb.Date
+
+relationship AutoDetected_5d382482-81dd-4dae-8238-b7a04a65b856
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: rfm_segments.client_sk
+	toColumn: customer_activity.client_sk
+
+relationship 75f039fb-80dc-4d56-a786-818ad2538382
+	joinOnDateBehavior: datePartOnly
+	fromColumn: revenue_trend.month_date
+	toColumn: LocalDateTable_105090eb-cd71-4e25-93fa-8a5f95638d32.Date
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "portfolio transactions"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c0cd3dd8-6f79-4d5e-86d6-b1ca8dfed538"
+  }
+}

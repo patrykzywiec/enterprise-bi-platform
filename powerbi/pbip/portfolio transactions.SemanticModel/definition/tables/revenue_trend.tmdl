@@ -1,0 +1,65 @@
+table revenue_trend
+	lineageTag: 44c4d553-f3f6-4150-a22b-81cbb0943fc0
+
+	column total_revenue
+		dataType: double
+		lineageTag: 9811a4ef-c34a-4af4-838c-5a42df14d7c8
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column transaction_count
+		dataType: int64
+		formatString: 0
+		lineageTag: c6728e27-9189-4eb0-bd86-5e02fc8e6025
+		summarizeBy: sum
+		sourceColumn: transaction_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_transaction_value
+		dataType: double
+		lineageTag: dc28e6b0-b43b-4431-8f5c-99a05a19c571
+		summarizeBy: sum
+		sourceColumn: avg_transaction_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column month_date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 83a56758-1e2b-4678-8744-5a90d2aa9d1f
+		summarizeBy: none
+		sourceColumn: month_date
+
+		variation Variation
+			isDefault
+			relationship: 75f039fb-80dc-4d56-a786-818ad2538382
+			defaultHierarchy: LocalDateTable_105090eb-cd71-4e25-93fa-8a5f95638d32.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition revenue_trend = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-e6ab3251-25b3.cloud.databricks.com", "/sql/1.0/warehouses/3f9c096074ad72f0", [Catalog = "", Database = ""]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    analytics_Schema = workspace_Database{[Name="analytics",Kind="Schema"]}[Data],
+				    dashboard_revenue_trend_Table = analytics_Schema{[Name="dashboard_revenue_trend",Kind="Table"]}[Data]
+				in
+				    dashboard_revenue_trend_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
