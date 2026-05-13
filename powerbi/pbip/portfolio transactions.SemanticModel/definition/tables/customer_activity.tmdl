@@ -1,6 +1,22 @@
 table customer_activity
 	lineageTag: 09671391-b13f-400b-8b15-35d3e96898f8
 
+	measure 'Active Customers' = CALCULATE(DISTINCTCOUNT(customer_activity[client_sk]), customer_activity[is_churned] = FALSE())
+		formatString: 0.0
+		lineageTag: c620eec4-cc6c-4ea8-a286-868d9032aa46
+
+	measure 'Churned Customers' = CALCULATE(DISTINCTCOUNT(customer_activity[client_sk]), customer_activity[is_churned] = TRUE())
+		formatString: 0
+		lineageTag: a4a1ee90-e622-46fd-a39c-61bc664629ae
+
+	measure 'Total Customers' = DISTINCTCOUNT(customer_activity[client_sk])
+		formatString: 0
+		lineageTag: 37a2dd4d-c0fa-4219-a5ed-10bd34d6988b
+
+	measure 'Churn Rate' = DIVIDE([Churned Customers], [Total Customers], 0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 94ff7b8e-9b64-4c01-bdcc-a733b4ae2f19
+
 	column client_sk
 		dataType: int64
 		formatString: 0

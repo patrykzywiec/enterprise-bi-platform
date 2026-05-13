@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 65,
         "y": 0
       },
       "nodes": [
@@ -69,6 +69,45 @@
           "nodeLineageTag": "33854aeb-6409-4150-81a7-784e0d437571",
           "size": {
             "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1320,
+            "y": 102.5
+          },
+          "nodeIndex": "executive trend parameter",
+          "nodeLineageTag": "489146b0-d9e3-49f5-b515-5e65a32b95a0",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1554,
+            "y": 102.5
+          },
+          "nodeIndex": "merchant parameter",
+          "nodeLineageTag": "fcedd373-c368-441c-b2af-4ad19aa53246",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1788,
+            "y": 102.5
+          },
+          "nodeIndex": "Customer paramater",
+          "nodeLineageTag": "ed9a8705-3735-4db4-92cb-b03e1f702e5e",
+          "size": {
+            "height": 152,
             "width": 234
           },
           "zIndex": 0

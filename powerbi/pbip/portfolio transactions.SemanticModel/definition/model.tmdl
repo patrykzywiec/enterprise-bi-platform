@@ -20,6 +20,9 @@ ref table merchant_performance
 ref table revenue_trend
 ref table rfm_segments
 ref table LocalDateTable_105090eb-cd71-4e25-93fa-8a5f95638d32
+ref table 'executive trend parameter'
+ref table 'merchant parameter'
+ref table 'Customer paramater'
 
 ref cultureInfo en-US
 

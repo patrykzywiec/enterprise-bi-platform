@@ -1,6 +1,21 @@
 table merchant_performance
 	lineageTag: 20fdf9c5-2a6a-463f-b71e-b9656713f5cb
 
+	measure 'Average transaction (merchant)' = AVERAGEX(merchant_performance,merchant_performance[avg_ticket])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f54d2b38-fe54-46a8-ac55-1db4afb6f7a7
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total revenue (merchant)' = SUMX(merchant_performance,merchant_performance[total_revenue])
+		lineageTag: 0fa4ff51-f769-46f0-a815-6535ba91bc66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Transaction count (merchant)' = SUMX(merchant_performance,merchant_performance[transaction_count])
+		formatString: 0
+		lineageTag: 3247d249-0bf5-4f72-9abc-c366e0a56da1
+
 	column merchant_sk
 		dataType: int64
 		formatString: 0
@@ -22,6 +37,7 @@ table merchant_performance
 	column merchant_city
 		dataType: string
 		lineageTag: 841fa917-4abb-45da-a235-9baa4f61b6a0
+		dataCategory: City
 		summarizeBy: none
 		sourceColumn: merchant_city
 
@@ -72,6 +88,12 @@ table merchant_performance
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_online = IF(merchant_performance[merchant_city] = "ONLINE","Yes","No")
+		lineageTag: 5bb454a1-09d3-44ab-8c22-c1922bd2bb00
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	partition merchant_performance = m
 		mode: import

@@ -1,0 +1,49 @@
+table 'merchant parameter'
+	lineageTag: fcedd373-c368-441c-b2af-4ad19aa53246
+
+	column 'merchant parameter'
+		lineageTag: 6ef15598-3343-4931-be09-169f945c4e06
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'merchant parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'merchant parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'merchant parameter Fields'
+		isHidden
+		lineageTag: df413b56-e229-443d-94ad-d4d1da790983
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'merchant parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'merchant parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: b5bddc10-2e6d-4f33-a9c1-24188f06e800
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'merchant parameter' = calculated
+		mode: import
+		source =
+				{
+				    ("Total revenue", NAMEOF('merchant_performance'[Total revenue (merchant)]), 0),
+				    ("Transaction count", NAMEOF('merchant_performance'[Transaction count (merchant)]), 1),
+				    ("Average transaction", NAMEOF('merchant_performance'[Average transaction (merchant)]), 2)
+				}
+
+	annotation PBI_Id = 38cbe6df3b374cd9b39f34d2a2efb791
+

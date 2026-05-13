@@ -1,0 +1,50 @@
+table 'Customer paramater'
+	lineageTag: ed9a8705-3735-4db4-92cb-b03e1f702e5e
+
+	column 'Customer paramater'
+		lineageTag: f0bf51fa-dacb-4543-abd9-7a7f3395fb92
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Customer paramater Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Customer paramater Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer paramater Fields'
+		isHidden
+		lineageTag: 91618612-c3f6-42ee-af97-4d84481ffb63
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Customer paramater Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer paramater Order'
+		isHidden
+		formatString: 0
+		lineageTag: 4eab09eb-7e27-45ea-bb5a-19fd53584338
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Customer paramater' = calculated
+		mode: import
+		source =
+				{
+				    ("Total Customers", NAMEOF('customer_activity'[Total Customers]), 0),
+				    ("Churn Rate", NAMEOF('customer_activity'[Churn Rate]), 1),
+				    ("Churned Customers", NAMEOF('customer_activity'[Churned Customers]), 2),
+				    ("Active Customers", NAMEOF('customer_activity'[Active Customers]), 3)
+				}
+
+	annotation PBI_Id = 2b447788cd5f4757ad7033f92daa2133
+

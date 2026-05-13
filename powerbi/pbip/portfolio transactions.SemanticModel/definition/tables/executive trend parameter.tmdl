@@ -1,0 +1,49 @@
+table 'executive trend parameter'
+	lineageTag: 489146b0-d9e3-49f5-b515-5e65a32b95a0
+
+	column 'executive trend parameter'
+		lineageTag: 20f871aa-1210-45e4-866d-0fba9f8d65b6
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'executive trend parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'executive trend parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'executive trend parameter Fields'
+		isHidden
+		lineageTag: 0c104468-2522-4446-aeb6-d610504dc6ba
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'executive trend parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'executive trend parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 630d4f6a-ef6a-4531-80b8-0faf2e7cf86f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'executive trend parameter' = calculated
+		mode: import
+		source =
+				{
+				    ("Total revenue", NAMEOF('revenue_trend'[Total revenue]), 0),
+				    ("Transaction count", NAMEOF('revenue_trend'[Transaction count]), 1),
+				    ("Average transaction", NAMEOF('revenue_trend'[Average transaction]), 2)
+				}
+
+	annotation PBI_Id = 7b5ed7db4d244ccba302ee002f4e7ff4
+

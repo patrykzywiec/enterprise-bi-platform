@@ -1,15 +1,32 @@
 table revenue_trend
 	lineageTag: 44c4d553-f3f6-4150-a22b-81cbb0943fc0
 
+	measure 'Average transaction' = AVERAGEX(revenue_trend,revenue_trend[avg_transaction_value])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 94208918-f4e1-4f6d-9a60-fce22cda9af7
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total revenue' = SUMX(revenue_trend,revenue_trend[total_revenue])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4ce4b5bc-57f7-4f61-b5a9-74a5cadf166c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Transaction count' = SUMX(revenue_trend,revenue_trend[transaction_count])
+		formatString: 0
+		lineageTag: 6cd4b2e1-6b48-460a-b677-197d2790d362
+
 	column total_revenue
 		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: 9811a4ef-c34a-4af4-838c-5a42df14d7c8
 		summarizeBy: sum
 		sourceColumn: total_revenue
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	column transaction_count
 		dataType: int64
@@ -22,13 +39,14 @@ table revenue_trend
 
 	column avg_transaction_value
 		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: dc28e6b0-b43b-4431-8f5c-99a05a19c571
 		summarizeBy: sum
 		sourceColumn: avg_transaction_value
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	column month_date
 		dataType: dateTime
