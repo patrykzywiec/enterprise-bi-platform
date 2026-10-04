@@ -40,9 +40,9 @@ table 'merchant parameter'
 		mode: import
 		source =
 				{
-				    ("Total revenue", NAMEOF('merchant_performance'[Total revenue (merchant)]), 0),
-				    ("Transaction count", NAMEOF('merchant_performance'[Transaction count (merchant)]), 1),
-				    ("Average transaction", NAMEOF('merchant_performance'[Average transaction (merchant)]), 2)
+				    ("Total revenue", NAMEOF('merchant_performance'[Revenue]), 0),
+				    ("Transaction count", NAMEOF('merchant_performance'[Transactions]), 1),
+				    ("Average transaction", NAMEOF('merchant_performance'[Avg transaction]), 2)
 				}
 
 	annotation PBI_Id = 38cbe6df3b374cd9b39f34d2a2efb791

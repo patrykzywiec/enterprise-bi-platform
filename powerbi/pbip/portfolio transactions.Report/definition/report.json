@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
   "themeCollection": {
     "baseTheme": {
       "name": "CY26SU02",
@@ -31,7 +31,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "true"
+                "Value": "false"
               }
             }
           }
@@ -48,6 +48,42 @@
           "name": "CY26SU02",
           "path": "BaseThemes/CY26SU02.json",
           "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "executive29634262391055208.png",
+          "path": "executive29634262391055208.png",
+          "type": "Image"
+        },
+        {
+          "name": "export_tab8203502046957923.png",
+          "path": "export_tab8203502046957923.png",
+          "type": "Image"
+        },
+        {
+          "name": "health04361966274367923.png",
+          "path": "health04361966274367923.png",
+          "type": "Image"
+        },
+        {
+          "name": "logo26478374510203395.png",
+          "path": "logo26478374510203395.png",
+          "type": "Image"
+        },
+        {
+          "name": "merchant1013953807388196.png",
+          "path": "merchant1013953807388196.png",
+          "type": "Image"
+        },
+        {
+          "name": "segments6180247136457927.png",
+          "path": "segments6180247136457927.png",
+          "type": "Image"
         }
       ]
     }

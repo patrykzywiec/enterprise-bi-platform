@@ -1,0 +1,52 @@
+table 'rfm measure parameters _2'
+	lineageTag: a9b9f95b-05b8-4b86-974f-7e44991920ba
+
+	column 'frm measure parameters _2'
+		lineageTag: 6a242f1c-25da-4cda-a145-e35d4117fef9
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'frm measure parameters _2 Order'
+
+		relatedColumnDetails
+			groupByColumn: 'frm measure parameters _2 Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'frm measure parameters _2 Fields'
+		isHidden
+		lineageTag: 2ee5162e-627f-453a-91f2-81ddd07988cb
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'frm measure parameters _2 Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'frm measure parameters _2 Order'
+		isHidden
+		formatString: 0
+		lineageTag: 69c49321-8b57-47fb-969b-be7a5f0a6e9c
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'rfm measure parameters _2' = calculated
+		mode: import
+		source =
+				{
+				    ("clv", NAMEOF('rfm_segments'[clv]), 0),
+				    ("avg trx", NAMEOF('rfm_segments'[avg transaction value rfm]), 1),
+				    ("recency days", NAMEOF('rfm_segments'[recency_days]), 2),
+				    ("Recency", NAMEOF('rfm_segments'[R_score]), 3),
+				    ("Frequency", NAMEOF('rfm_segments'[F_score]), 4),
+				    ("Monetary", NAMEOF('rfm_segments'[M_score]), 5)
+				}
+
+	annotation PBI_Id = c924899ebc10475faad23c04a68b1fe2
+

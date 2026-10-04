@@ -1,0 +1,35 @@
+table data-map-state-abbreviations
+	lineageTag: 38ea3ccb-6852-4860-9735-d21d0b2090a4
+
+	column Name
+		dataType: string
+		lineageTag: b0dd6031-ed26-4775-b242-4e01c7955059
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Abbreviation
+		dataType: string
+		lineageTag: 47e6b15c-9dea-4b59-9069-e172042b79a6
+		summarizeBy: none
+		sourceColumn: Abbreviation
+
+		annotation SummarizationSetBy = Automatic
+
+	partition data-map-state-abbreviations = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents("https://www.cdc.gov/wcms/4.0/cdc-wp/data-presentation/data/data-map-state-abbreviations.csv"),[Delimiter=",", Columns=2, Encoding=1250, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Name", type text}, {"Abbreviation", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

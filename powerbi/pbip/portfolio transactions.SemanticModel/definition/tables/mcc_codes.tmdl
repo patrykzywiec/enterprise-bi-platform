@@ -1,0 +1,66 @@
+table mcc_codes
+	lineageTag: b42447a9-e8a3-4a5d-847d-1f8dedad2651
+
+	column mcc
+		dataType: int64
+		formatString: 0
+		lineageTag: 7925e0a8-2e79-4322-8547-394c284193bd
+		summarizeBy: none
+		sourceColumn: mcc
+
+		annotation SummarizationSetBy = Automatic
+
+	column edited_description
+		dataType: string
+		lineageTag: ebad512b-fa60-4477-bdf1-2047267eaff7
+		summarizeBy: none
+		sourceColumn: edited_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column combined_description
+		dataType: string
+		lineageTag: 2c02f47e-9733-4ccb-8656-d2dade733a47
+		summarizeBy: none
+		sourceColumn: combined_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column usda_description
+		dataType: string
+		lineageTag: b2b86cb3-7ffc-4046-8c2c-6e7da8f7d8ed
+		summarizeBy: none
+		sourceColumn: usda_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column irs_description
+		dataType: string
+		lineageTag: 3c97af5b-1e52-44c2-982b-e4008f826850
+		summarizeBy: none
+		sourceColumn: irs_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column irs_reportable
+		dataType: string
+		lineageTag: d011deea-73e2-4c6f-9f0a-656f8fb91e2a
+		summarizeBy: none
+		sourceColumn: irs_reportable
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mcc_codes = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com/greggles/mcc-codes/main/mcc_codes.csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"mcc", Int64.Type}, {"edited_description", type text}, {"combined_description", type text}, {"usda_description", type text}, {"irs_description", type text}, {"irs_reportable", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

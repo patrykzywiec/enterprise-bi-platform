@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["dim_date","customer_activity","merchant_performance","revenue_trend","rfm_segments"]
+annotation PBI_QueryOrder = ["dim_date","customer_activity","merchant_performance","revenue_trend","rfm_segments","mcc_codes","data-map-state-abbreviations"]
 
 annotation PBI_ProTooling = ["TMDLView_Desktop","DaxQueryView_Desktop","DevMode"]
 
@@ -23,6 +23,10 @@ ref table LocalDateTable_105090eb-cd71-4e25-93fa-8a5f95638d32
 ref table 'executive trend parameter'
 ref table 'merchant parameter'
 ref table 'Customer paramater'
+ref table mcc_codes
+ref table data-map-state-abbreviations
+ref table 'rfm measure parameters'
+ref table 'rfm measure parameters _2'
 
 ref cultureInfo en-US
 

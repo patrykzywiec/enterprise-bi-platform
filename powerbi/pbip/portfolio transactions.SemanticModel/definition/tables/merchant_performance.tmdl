@@ -1,20 +1,25 @@
 table merchant_performance
 	lineageTag: 20fdf9c5-2a6a-463f-b71e-b9656713f5cb
 
-	measure 'Average transaction (merchant)' = AVERAGEX(merchant_performance,merchant_performance[avg_ticket])
+	measure 'Avg transaction' = AVERAGEX(merchant_performance,merchant_performance[avg_ticket])
 		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: f54d2b38-fe54-46a8-ac55-1db4afb6f7a7
 
 		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
-	measure 'Total revenue (merchant)' = SUMX(merchant_performance,merchant_performance[total_revenue])
+	measure Revenue = SUMX(merchant_performance,merchant_performance[total_revenue])
+		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: 0fa4ff51-f769-46f0-a815-6535ba91bc66
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
-	measure 'Transaction count (merchant)' = SUMX(merchant_performance,merchant_performance[transaction_count])
-		formatString: 0
+	measure Transactions = SUMX(merchant_performance,merchant_performance[transaction_count])
+		formatString: #,0
 		lineageTag: 3247d249-0bf5-4f72-9abc-c366e0a56da1
+
+	measure 'no merchants' = DISTINCTCOUNT(merchant_performance[merchant_id])
+		formatString: 0
+		lineageTag: 66c8b2df-993f-44e3-8973-22a8c4e5f967
 
 	column merchant_sk
 		dataType: int64
@@ -46,6 +51,7 @@ table merchant_performance
 	column merchant_state
 		dataType: string
 		lineageTag: b6585e23-fa4d-45e3-9571-278703533af8
+		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: merchant_state
 
@@ -55,7 +61,7 @@ table merchant_performance
 		dataType: int64
 		formatString: 0
 		lineageTag: 78e2bff5-1cb3-4fdb-9437-1ada349e7f3d
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: mcc
 
 		annotation SummarizationSetBy = Automatic
@@ -89,8 +95,27 @@ table merchant_performance
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column is_online = IF(merchant_performance[merchant_city] = "ONLINE","Yes","No")
+	column is_online = IF(merchant_performance[merchant_city] = "ONLINE",1,0)
+		formatString: 0
 		lineageTag: 5bb454a1-09d3-44ab-8c22-c1922bd2bb00
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_usa =
+			IF(
+			            AND(LEN(merchant_performance[merchant_state])<3,
+			                merchant_performance[merchant_city]<>"ONLINE"),
+			            "USA",
+			            "Not USA")
+		lineageTag: 92c9aa4e-960a-44dc-a874-a10f044d6892
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column country = IF(merchant_performance[is_usa] = "USA", "USA",merchant_performance[merchant_state])
+		lineageTag: 3c956d78-4fbb-409f-ae2b-a3ace27e22a9
+		dataCategory: Country
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic

@@ -8,7 +8,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "5223cd432880d0c2c298",
+        "name": "0b031c4134ead2f9deeb",
         "field": {
           "Column": {
             "Expression": {
@@ -89,10 +89,43 @@
           "transparency": {
             "expr": {
               "Literal": {
-                "Value": "82D"
+                "Value": "0D"
               }
             }
           },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'executive2.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "executive29634262391055208.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fill'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
           "image": {
             "image": {
               "name": {

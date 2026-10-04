@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "7c1eb5a4c7e2dbe6045c",
   "position": {
-    "x": 874.16346681294567,
-    "y": 221.17388919363685,
-    "z": 7000,
-    "height": 210.64179923203511,
-    "width": 629.29237520570484,
-    "tabOrder": 7000
+    "x": 916.48909183155752,
+    "y": 491.93302891933024,
+    "z": 5000,
+    "height": 258.95484525621509,
+    "width": 629.12227295788932,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "barChart",
@@ -43,10 +43,10 @@
                       "Entity": "merchant_performance"
                     }
                   },
-                  "Property": "Total revenue (merchant)"
+                  "Property": "Revenue"
                 }
               },
-              "queryRef": "merchant_performance.Total revenue (merchant)",
+              "queryRef": "merchant_performance.Revenue",
               "nativeQueryRef": "Total revenue",
               "displayName": "Total revenue"
             }
@@ -79,7 +79,7 @@
                     "Entity": "merchant_performance"
                   }
                 },
-                "Property": "Total revenue (merchant)"
+                "Property": "Revenue"
               }
             },
             "direction": "Descending"
@@ -134,6 +134,86 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "merchant_performance"
+                            }
+                          },
+                          "Property": "Revenue"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'minColor'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#0E1A77'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showGradientLegend": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -143,7 +223,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -176,40 +256,21 @@
             }
           }
         }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "5df81e850c65d0678c1e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "merchant_performance"
-              }
-            },
-            "Property": "merchant_city"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "2933df38d45984b2b6a2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "merchant_performance"
-              }
-            },
-            "Property": "Total revenue (merchant)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

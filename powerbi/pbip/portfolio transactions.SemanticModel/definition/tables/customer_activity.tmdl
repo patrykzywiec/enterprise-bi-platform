@@ -2,7 +2,7 @@ table customer_activity
 	lineageTag: 09671391-b13f-400b-8b15-35d3e96898f8
 
 	measure 'Active Customers' = CALCULATE(DISTINCTCOUNT(customer_activity[client_sk]), customer_activity[is_churned] = FALSE())
-		formatString: 0.0
+		formatString: #,0
 		lineageTag: c620eec4-cc6c-4ea8-a286-868d9032aa46
 
 	measure 'Churned Customers' = CALCULATE(DISTINCTCOUNT(customer_activity[client_sk]), customer_activity[is_churned] = TRUE())
@@ -16,6 +16,32 @@ table customer_activity
 	measure 'Churn Rate' = DIVIDE([Churned Customers], [Total Customers], 0)
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 94ff7b8e-9b64-4c01-bdcc-a733b4ae2f19
+
+	measure 'clv activity' = SUMX(customer_activity,customer_activity[customer_lifetime_value])
+		lineageTag: f930664b-a3b2-40a4-acdb-b5fa360dcc27
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'avg clv' = AVERAGEX(customer_activity,customer_activity[customer_lifetime_value])
+		lineageTag: c3ff368e-402f-400f-a965-865b5621b251
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Recency' =
+			
+			VAR AvgRecency =
+			    CALCULATE(
+			        AVERAGEX(customer_activity, customer_activity[recency_days]),
+			        customer_activity[is_churned] = TRUE()
+			    )
+			VAR Years = ROUND(AvgRecency / 365, 1)
+			RETURN
+			IF(
+			    ISBLANK(Years),
+			    BLANK(),
+			    FORMAT(Years, "0.0") & " years"
+			)
+		lineageTag: 4b04c4cb-979f-454e-a8bc-3131c1573f76
 
 	column client_sk
 		dataType: int64
@@ -34,6 +60,8 @@ table customer_activity
 		sourceColumn: recency_days
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"customer_activity","TableItemName":"recency_days (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
 
 	column frequency
 		dataType: int64
@@ -74,6 +102,8 @@ table customer_activity
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"customer_activity","TableItemName":"customer_lifetime_value (bins)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
 	column is_churned
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
@@ -98,6 +128,85 @@ table customer_activity
 		sourceColumn: rf_segment_label
 
 		annotation SummarizationSetBy = Automatic
+
+	column 'recency_days (bins)' =
+			IF(
+				ISBLANK('customer_activity'[recency_days]),
+				BLANK(),
+				INT('customer_activity'[recency_days] / 200) * 200
+			)
+		formatString: 0
+		lineageTag: 0736803e-09b3-4c6b-be30-80f63a7467d7
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "customer_activity"
+				          }
+				        },
+				        "Property": "recency_days"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 200.0,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"c","Entity":"customer_activity"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"c"}},"Property":"recency_days"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"c"}},"Property":"recency_days"}},"Size":200.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'customer_lifetime_value (bins)' =
+			IF(
+				ISBLANK('customer_activity'[customer_lifetime_value]),
+				BLANK(),
+				IF(
+					'customer_activity'[customer_lifetime_value] >= 0,
+					ROUNDDOWN('customer_activity'[customer_lifetime_value] / 100000, 0) * 100000,
+					ROUNDUP('customer_activity'[customer_lifetime_value] / 100000, 0) * 100000
+				)
+			)
+		lineageTag: 2845416d-13bb-4103-865c-7ef851a1edf6
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "customer_activity"
+				          }
+				        },
+				        "Property": "customer_lifetime_value"
+				      }
+				    }
+				  ],
+				  "binningMetadata": {
+				    "binSize": {
+				      "value": 100000.0,
+				      "unit": 0
+				    }
+				  }
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"c","Entity":"customer_activity"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"c"}},"Property":"customer_lifetime_value"}}],"BinItem":{"Expression":{"Floor":{"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"c"}},"Property":"customer_lifetime_value"}},"Size":100000.0}}}}
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	partition customer_activity = m
 		mode: import

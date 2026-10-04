@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
   "name": "350ddf524525077e23c7",
   "position": {
-    "x": 224.68458584750411,
-    "y": 763.57652221612727,
+    "x": 255.45454545454544,
+    "y": 751.81818181818176,
     "z": 2000,
-    "height": 47.3944048272079,
-    "width": 549.42402633022493,
+    "height": 47.272727272727266,
+    "width": 549.090909090909,
     "tabOrder": 2000
   },
   "visual": {
@@ -88,7 +88,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''revenue_trend''[Transaction count]'"
+                                "Value": "'''revenue_trend''[Total revenue]'"
                               }
                             }
                           ]
@@ -116,7 +116,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''revenue_trend''[Transaction count]'"
+                                      "Value": "'''revenue_trend''[Total revenue]'"
                                     }
                                   }
                                 ]
@@ -140,7 +140,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Transaction count"
+                            "0": "Total revenue"
                           }
                         ]
                       }
@@ -226,7 +226,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }

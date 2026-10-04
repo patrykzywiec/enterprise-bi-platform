@@ -1,6 +1,33 @@
 table rfm_segments
 	lineageTag: 33854aeb-6409-4150-81a7-784e0d437571
 
+	measure clients = COUNT(rfm_segments[client_sk])
+		formatString: 0
+		lineageTag: d64d60ef-abb3-424d-b761-f8205e239fbb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'churn rate rfm' = ```
+			
+			var churned = 
+			CALCULATE(
+			    [clients],rfm_segments[is_churned] = TRUE())
+			
+			return
+			IFERROR(churned/[clients],0)
+			                    
+			```
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: ed25cfc7-d975-432e-aab3-84546885b096
+
+	measure 'avg transaction value rfm' = AVERAGEX(rfm_segments,rfm_segments[avg_transaction_value])
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		lineageTag: 46755e8d-d147-4dcf-867c-30375ac49521
+
+	measure clv = SUMX(rfm_segments,rfm_segments[monetary])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 807d7720-9238-494d-8687-38541039ced7
+
 	column client_sk
 		dataType: int64
 		formatString: 0

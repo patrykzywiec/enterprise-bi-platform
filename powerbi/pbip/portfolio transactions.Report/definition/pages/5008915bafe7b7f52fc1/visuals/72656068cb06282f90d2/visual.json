@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "72656068cb06282f90d2",
   "position": {
-    "x": 923.31321996708721,
-    "y": 431.81568842567196,
-    "z": 6000,
-    "height": 47.3944048272079,
-    "width": 549.42402633022493,
-    "tabOrder": 6000
+    "x": 956.36363636363626,
+    "y": 750.90909090909088,
+    "z": 4000,
+    "height": 47.272727272727266,
+    "width": 549.090909090909,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",
@@ -88,7 +88,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''merchant_performance''[Total revenue (merchant)]'"
+                                "Value": "'''merchant_performance''[Revenue]'"
                               }
                             }
                           ]
@@ -116,7 +116,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''merchant_performance''[Total revenue (merchant)]'"
+                                      "Value": "'''merchant_performance''[Revenue]'"
                                     }
                                   }
                                 ]
@@ -233,7 +233,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -242,23 +242,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ac3c2471e0c948b297ca",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "merchant parameter"
-              }
-            },
-            "Property": "merchant parameter"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

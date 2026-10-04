@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "1f0f57d29393a074624d",
+  "displayName": "Merchant tooltip",
+  "displayOption": "FitToPage",
+  "height": 425,
+  "width": 430,
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "e5cb78fa55ac757bff92",
+  "position": {
+    "x": 75.833333333333343,
+    "y": 825,
+    "z": 12000,
+    "height": 71.666666666666671,
+    "width": 1515.8333333333335,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Comment:",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Current Year revenue shows a -16.84% YoY decline. Given our heavy reliance on the ONLINE channel, investigate if overly strict fraud detection models are causing false declines. "
+                  },
+                  {
+                    "value": "Priority:",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " Leverage behavioral data to upgrade 395 'Potential Loyalists' to 'Champions' to help offset this deficit."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

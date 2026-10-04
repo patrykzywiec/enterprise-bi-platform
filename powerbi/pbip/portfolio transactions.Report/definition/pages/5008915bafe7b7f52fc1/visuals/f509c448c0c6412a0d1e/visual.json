@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "f509c448c0c6412a0d1e",
   "position": {
-    "x": 189.5776193088316,
-    "y": 94.7888096544158,
+    "x": 298.33333333333337,
+    "y": 62.5,
     "z": 1000,
-    "height": 103.56555128908393,
-    "width": 621.39330773450354,
+    "height": 109.09090909090908,
+    "width": 630,
     "tabOrder": 1000
   },
   "visual": {
@@ -341,7 +341,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -354,7 +354,23 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "c8917deff571477063fc",
+        "name": "37770d2327070d8805af",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "revenue_trend"
+              }
+            },
+            "Property": "Average transaction"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fcde2374f6e835ea20f7",
+        "ordinal": 1,
         "field": {
           "Measure": {
             "Expression": {
@@ -368,7 +384,8 @@
         "type": "Advanced"
       },
       {
-        "name": "4c91353cbc6f487208b5",
+        "name": "0f6d8a1b230032bfb818",
+        "ordinal": 2,
         "field": {
           "Measure": {
             "Expression": {
@@ -382,19 +399,133 @@
         "type": "Advanced"
       },
       {
-        "name": "74852d8b45fb6f0fb54e",
+        "name": "ecab4d287a68da9e7d4e",
+        "ordinal": 3,
         "field": {
-          "Measure": {
+          "HierarchyLevel": {
             "Expression": {
-              "SourceRef": {
-                "Entity": "revenue_trend"
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "revenue_trend"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "month_date"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
               }
             },
-            "Property": "Average transaction"
+            "Level": "Year"
           }
         },
-        "type": "Advanced"
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "l",
+              "Entity": "LocalDateTable_105090eb-cd71-4e25-93fa-8a5f95638d32",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "l"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2019L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              },
+              "Annotations": {
+                "filterExpressionMetadata": {
+                  "expressions": [
+                    {
+                      "HierarchyLevel": {
+                        "Expression": {
+                          "Hierarchy": {
+                            "Expression": {
+                              "PropertyVariationSource": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "revenue_trend"
+                                  }
+                                },
+                                "Name": "Variation",
+                                "Property": "month_date"
+                              }
+                            },
+                            "Hierarchy": "Date Hierarchy"
+                          }
+                        },
+                        "Level": "Year"
+                      }
+                    }
+                  ],
+                  "decomposedIdentities": {
+                    "values": [
+                      [
+                        {
+                          "0": [
+                            {
+                              "Literal": {
+                                "Value": "2019L"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    ],
+                    "columns": [
+                      {
+                        "value": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "LocalDateTable_105090eb-cd71-4e25-93fa-8a5f95638d32"
+                              }
+                            },
+                            "Property": "Year"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "valueMap": [
+                    {
+                      "0": "2019"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

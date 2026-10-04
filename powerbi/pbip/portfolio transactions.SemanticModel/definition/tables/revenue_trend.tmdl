@@ -2,20 +2,330 @@ table revenue_trend
 	lineageTag: 44c4d553-f3f6-4150-a22b-81cbb0943fc0
 
 	measure 'Average transaction' = AVERAGEX(revenue_trend,revenue_trend[avg_transaction_value])
-		formatString: \$#,0;(\$#,0);\$#,0
+		formatString: #,0.00
 		lineageTag: 94208918-f4e1-4f6d-9a60-fce22cda9af7
 
-		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
-
 	measure 'Total revenue' = SUMX(revenue_trend,revenue_trend[total_revenue])
-		formatString: \$#,0;(\$#,0);\$#,0
+		formatString: #,0.0
 		lineageTag: 4ce4b5bc-57f7-4f61-b5a9-74a5cadf166c
 
-		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
-
 	measure 'Transaction count' = SUMX(revenue_trend,revenue_trend[transaction_count])
-		formatString: 0
+		formatString: #,0.0
 		lineageTag: 6cd4b2e1-6b48-460a-b677-197d2790d362
+
+	measure 'Total revenue last month' =
+			
+			VAR CurrentDate = MAX(revenue_trend[month_date])
+			VAR LastMonthDate = IF(MONTH(CurrentDate) = 1, DATE(YEAR(CurrentDate) - 1, 12, 1), DATE(YEAR(CurrentDate), MONTH(CurrentDate) - 1, 1))
+			RETURN
+			    CALCULATE(
+			        [Total revenue],
+			        ALL(revenue_trend[month_date]),
+			        revenue_trend[month_date] = LastMonthDate
+			    )
+		lineageTag: 4e9791fe-6d89-4a80-bb30-18aff42a5d91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total revenue same period last year' =
+			
+			VAR CurrentDate = MAX(revenue_trend[month_date])
+			VAR same_period_last_year = DATE(YEAR(CurrentDate) - 1, MONTH(CurrentDate), DAY(CurrentDate))
+			VAR SelectedMetric = SELECTEDVALUE('executive trend parameter'[executive trend parameter Order], 0)
+			RETURN
+			    SWITCH(SelectedMetric,
+			        0, CALCULATE([Total revenue], ALL(revenue_trend[month_date]), revenue_trend[month_date] = same_period_last_year),
+			        1, CALCULATE([Transaction count], ALL(revenue_trend[month_date]), revenue_trend[month_date] = same_period_last_year),
+			        2, CALCULATE([Average transaction], ALL(revenue_trend[month_date]), revenue_trend[month_date] = same_period_last_year)
+			    )
+		formatString: 0.00
+		lineageTag: 9cb35374-30dc-467b-b236-02ccbf59bf47
+
+	measure 'Total revenue last quarter' = ```
+			
+			VAR CurrentDate = MAX(revenue_trend[month_date])
+			VAR CurrentMonth = MONTH(CurrentDate)
+			VAR CurrentYear = YEAR(CurrentDate)
+			
+			// Oblicz początek poprzedniego kwartału
+			VAR LastQuarterStartMonth =
+			    SWITCH(
+			        TRUE(),
+			        CurrentMonth <= 3, 10,  // Q1 -> Q4 poprzedniego roku
+			        CurrentMonth <= 6, 1,   // Q2 -> Q1 tego roku
+			        CurrentMonth <= 9, 4,   // Q3 -> Q2 tego roku
+			        7                        // Q4 -> Q3 tego roku
+			    )
+			
+			VAR LastQuarterStartYear =
+			    SWITCH(
+			        TRUE(),
+			        CurrentMonth <= 3, CurrentYear - 1,  // Q1 -> poprzedni rok
+			        CurrentYear                           // pozostałe przypadki - ten sam rok
+			    )
+			
+			VAR LastQuarterEndMonth =
+			    SWITCH(
+			        TRUE(),
+			        CurrentMonth <= 3, 12,  // Q1 -> grudzień poprzedniego roku
+			        CurrentMonth <= 6, 3,   // Q2 -> marzec tego roku
+			        CurrentMonth <= 9, 6,   // Q3 -> czerwiec tego roku
+			        9                        // Q4 -> wrzesień tego roku
+			    )
+			
+			VAR LastQuarterEndYear = LastQuarterStartYear
+			
+			VAR QuarterStartDate = DATE(LastQuarterStartYear, LastQuarterStartMonth, 1)
+			VAR QuarterEndDate = DATE(LastQuarterEndYear, LastQuarterEndMonth, 
+			    DAY(EOMONTH(DATE(LastQuarterEndYear, LastQuarterEndMonth, 1), 0)))
+			
+			VAR SelectedMetric = SELECTEDVALUE('executive trend parameter'[executive trend parameter Order], 0)
+			
+			/* RETURN
+			    CALCULATE(
+			        [Total revenue],
+			        DATESBETWEEN(
+			            revenue_trend[month_date],
+			            QuarterStartDate,
+			            QuarterEndDate
+			        )
+			    )
+			    */
+			RETURN
+			    SWITCH(SelectedMetric,
+			        0,  CALCULATE(
+			        [Total revenue],
+			        ALL(revenue_trend[month_date]),
+			        DATESBETWEEN(
+			            revenue_trend[month_date],
+			            QuarterStartDate,
+			            QuarterEndDate
+			        )
+			    ),
+			        1,  CALCULATE(
+			        [Transaction count],
+			        ALL(revenue_trend[month_date]),
+			        DATESBETWEEN(
+			            revenue_trend[month_date],
+			            QuarterStartDate,
+			            QuarterEndDate
+			        )
+			    )
+			 ,
+			        2,   CALCULATE(
+			        [Average transaction],
+			        ALL(revenue_trend[month_date]),
+			        DATESBETWEEN(
+			            revenue_trend[month_date],
+			            QuarterStartDate,
+			            QuarterEndDate
+			        )
+			    )
+			
+			    )
+			
+			```
+		lineageTag: cc3275e3-fa5e-4320-a53e-396ff739a5c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total revenue current quarter' = ```
+			
+			VAR CurrentDate = MAX(revenue_trend[month_date])
+			VAR CurrentMonth = MONTH(CurrentDate)
+			VAR CurrentYear = YEAR(CurrentDate)
+			
+			// Oblicz początek bieżącego kwartału
+			VAR CurrentQuarterStartMonth =
+			    SWITCH(
+			        TRUE(),
+			        CurrentMonth <= 3, 1,   // Q1: styczeń-marzec
+			        CurrentMonth <= 6, 4,   // Q2: kwiecień-czerwiec
+			        CurrentMonth <= 9, 7,   // Q3: lipiec-wrzesień
+			        10                       // Q4: październik-grudzień
+			    )
+			
+			VAR CurrentQuarterEndMonth =
+			    SWITCH(
+			        TRUE(),
+			        CurrentMonth <= 3, 3,   // Q1: marzec
+			        CurrentMonth <= 6, 6,   // Q2: czerwiec
+			        CurrentMonth <= 9, 9,   // Q3: wrzesień
+			        12                       // Q4: grudzień
+			    )
+			
+			VAR QuarterStartDate = DATE(CurrentYear, CurrentQuarterStartMonth, 1)
+			VAR QuarterEndDate = DATE(CurrentYear, CurrentQuarterEndMonth,
+			    DAY(EOMONTH(DATE(CurrentYear, CurrentQuarterEndMonth, 1), 0)))
+			
+			VAR SelectedMetric = SELECTEDVALUE('executive trend parameter'[executive trend parameter Order], 0)
+			
+			/*
+			RETURN
+			    CALCULATE(
+			        [Total revenue],
+			        ALL(revenue_trend[month_date]),
+			        DATESBETWEEN(
+			            revenue_trend[month_date],
+			            QuarterStartDate,
+			            QuarterEndDate
+			        )
+			    )
+			*/
+			
+			RETURN
+			    SWITCH(SelectedMetric,
+			        0,  CALCULATE(
+			        [Total revenue],
+			        ALL(revenue_trend[month_date]),
+			        DATESBETWEEN(
+			            revenue_trend[month_date],
+			            QuarterStartDate,
+			            QuarterEndDate
+			        )
+			    ),
+			        1,  CALCULATE(
+			        [Transaction count],
+			        ALL(revenue_trend[month_date]),
+			        DATESBETWEEN(
+			            revenue_trend[month_date],
+			            QuarterStartDate,
+			            QuarterEndDate
+			        )
+			    )
+			 ,
+			        2,   CALCULATE(
+			        [Average transaction],
+			        ALL(revenue_trend[month_date]),
+			        DATESBETWEEN(
+			            revenue_trend[month_date],
+			            QuarterStartDate,
+			            QuarterEndDate
+			        )
+			    )
+			
+			    )
+			
+			```
+		lineageTag: c96c3197-8946-48b2-a021-6f7d0e3a6dc1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'test total last month' = ```
+			
+			 CALCULATE(
+			    [Total revenue],
+			    PREVIOUSMONTH(revenue_trend[month_date])
+			)
+			```
+		lineageTag: f54cfc9f-fb44-480c-ae11-93de995cda50
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'test total last year' =
+			
+			CALCULATE([Total revenue],PREVIOUSYEAR(revenue_trend[month_date].[Date]))
+		lineageTag: 25fc1715-2502-4f41-adc2-33fc415f275a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total revenue current year' = ```
+			
+			VAR CurrentDate = MAX(revenue_trend[month_date])
+			VAR CurrentYear = YEAR(CurrentDate)
+			
+			VAR YearStartDate = DATE(CurrentYear, 1, 1)
+			VAR YearEndDate =  DATE(CurrentYear, 12, 31) 
+			
+			VAR SelectedMetric = SELECTEDVALUE('executive trend parameter'[executive trend parameter Order], 0)
+			
+			RETURN
+			    SWITCH(
+			        SelectedMetric,
+			        0,
+			            CALCULATE(
+			                [Total revenue],
+			                ALL(revenue_trend[month_date]),
+			                DATESBETWEEN(
+			                    revenue_trend[month_date],
+			                    YearStartDate,
+			                    YearEndDate
+			                )
+			            ),
+			        1,
+			            CALCULATE(
+			                [Transaction count],
+			                ALL(revenue_trend[month_date]),
+			                DATESBETWEEN(
+			                    revenue_trend[month_date],
+			                    YearStartDate,
+			                    YearEndDate
+			                )
+			            ),
+			        2,
+			            CALCULATE(
+			                [Average transaction],
+			                ALL(revenue_trend[month_date]),
+			                DATESBETWEEN(
+			                    revenue_trend[month_date],
+			                    YearStartDate,
+			                    YearEndDate
+			                )
+			            )
+			    )
+			```
+		lineageTag: 62c22340-e764-4d11-9240-af43d046b69c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total revenue last year' =
+			
+			VAR CurrentDate = MAX(revenue_trend[month_date])
+			VAR CurrentYear = YEAR(CurrentDate)
+			VAR LastYear = CurrentYear - 1
+			
+			VAR YearStartDate = DATE(LastYear, 1, 1)
+			VAR YearEndDate = DATE(LastYear, 12, 31)
+			
+			VAR SelectedMetric = SELECTEDVALUE('executive trend parameter'[executive trend parameter Order], 0)
+			
+			RETURN
+			    SWITCH(
+			        SelectedMetric,
+			        0,
+			            CALCULATE(
+			                [Total revenue],
+			                ALL(revenue_trend[month_date]),
+			                DATESBETWEEN(
+			                    revenue_trend[month_date],
+			                    YearStartDate,
+			                    YearEndDate
+			                )
+			            ),
+			        1,
+			            CALCULATE(
+			                [Transaction count],
+			                ALL(revenue_trend[month_date]),
+			                DATESBETWEEN(
+			                    revenue_trend[month_date],
+			                    YearStartDate,
+			                    YearEndDate
+			                )
+			            ),
+			        2,
+			            CALCULATE(
+			                [Average transaction],
+			                ALL(revenue_trend[month_date]),
+			                DATESBETWEEN(
+			                    revenue_trend[month_date],
+			                    YearStartDate,
+			                    YearEndDate
+			                )
+			            )
+			    )
+		lineageTag: ef0d288d-8215-457d-ab78-1768bb22054f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column total_revenue
 		dataType: double

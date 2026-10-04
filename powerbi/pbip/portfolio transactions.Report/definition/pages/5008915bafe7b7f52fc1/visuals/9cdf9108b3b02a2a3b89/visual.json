@@ -1,16 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "9cdf9108b3b02a2a3b89",
   "position": {
-    "x": 200.52896630473228,
-    "y": 230.75173643723991,
+    "x": 228.18181818181816,
+    "y": 194.54545454545453,
     "z": 0,
-    "height": 520.25586353944561,
-    "width": 598.72068230277182,
+    "height": 556.36363636363637,
+    "width": 632.72727272727263,
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "areaChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -131,12 +131,12 @@
                       "Entity": "revenue_trend"
                     }
                   },
-                  "Property": "Transaction count"
+                  "Property": "Total revenue"
                 }
               },
-              "queryRef": "revenue_trend.Transaction count",
-              "nativeQueryRef": "Transaction count",
-              "displayName": "Transaction count"
+              "queryRef": "revenue_trend.Total revenue",
+              "nativeQueryRef": "Total revenue",
+              "displayName": "Total revenue"
             }
           ],
           "fieldParameters": [
@@ -241,6 +241,34 @@
                   "Value": "false"
                 }
               }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            },
+            "lineChartType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'linear'"
+                }
+              }
+            },
+            "showMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "markerSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
             }
           }
         }
@@ -268,6 +296,62 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0e1a77'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "revenue_trend.Average transaction"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0e1a77'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "revenue_trend.Total revenue"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0e1a77'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "revenue_trend.Transaction count"
           }
         }
       ]
@@ -318,7 +402,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -366,123 +450,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "6930ddb98d8c0cccc474",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "revenue_trend"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "month_date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "4785eeb981622f4a8bca",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "revenue_trend"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "month_date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Quarter"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "fa920de208d0e700fffb",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "revenue_trend"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "month_date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Month"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "15258b138d348f6c88b6",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "PropertyVariationSource": {
-                    "Expression": {
-                      "SourceRef": {
-                        "Entity": "revenue_trend"
-                      }
-                    },
-                    "Name": "Variation",
-                    "Property": "month_date"
-                  }
-                },
-                "Hierarchy": "Date Hierarchy"
-              }
-            },
-            "Level": "Day"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "955349d631a62681a3d3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "revenue_trend"
-              }
-            },
-            "Property": "Transaction count"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

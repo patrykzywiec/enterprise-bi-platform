@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "d43b052da4affd975798",
   "position": {
-    "x": 923.31321996708721,
-    "y": 751.28908392759183,
-    "z": 8000,
-    "height": 47.3944048272079,
-    "width": 549.42402633022493,
-    "tabOrder": 8000
+    "x": 967.630644342973,
+    "y": 434.29731100963977,
+    "z": 7000,
+    "height": 48.18181818181818,
+    "width": 549.090909090909,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "slicer",
@@ -233,7 +233,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -242,23 +242,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "41fd9781efe5cd1afea2",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Customer paramater"
-              }
-            },
-            "Property": "Customer paramater"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

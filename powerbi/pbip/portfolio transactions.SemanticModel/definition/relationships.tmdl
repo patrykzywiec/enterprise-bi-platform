@@ -14,3 +14,11 @@ relationship 75f039fb-80dc-4d56-a786-818ad2538382
 	fromColumn: revenue_trend.month_date
 	toColumn: LocalDateTable_105090eb-cd71-4e25-93fa-8a5f95638d32.Date
 
+relationship AutoDetected_8d159f3e-5ac3-4776-be8f-f1f07fecaa72
+	fromColumn: merchant_performance.mcc
+	toColumn: mcc_codes.mcc
+
+relationship 2332ad0d-5b1a-dd2a-c04e-5823d913e342
+	fromColumn: merchant_performance.merchant_state
+	toColumn: data-map-state-abbreviations.Abbreviation
+
