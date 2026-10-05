@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "dc4507d351e737b84641",
+  "position": {
+    "x": 457.27272727272725,
+    "y": 280.90909090909088,
+    "z": 17001,
+    "height": 300,
+    "width": 300,
+    "tabOrder": 17001
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "zrobilem tutaj drill through - trzeba sprawdzic 2x reszte raportu  - glownie opisy osi itp - pozniej nagrac i zrobic pfda."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "04.10.2026 - czyli ostatni raz jak siadalem "
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

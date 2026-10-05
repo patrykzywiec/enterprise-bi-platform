@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "129bce20c23113af6f12",
   "position": {
     "x": 768.18181818181813,
@@ -185,7 +185,7 @@
                   "identityValues": [
                     {
                       "Literal": {
-                        "Value": "'Service Stations ( with or without ancillary services)'"
+                        "Value": "'Insurance Sales, Underwriting, and Premiums'"
                       }
                     }
                   ],

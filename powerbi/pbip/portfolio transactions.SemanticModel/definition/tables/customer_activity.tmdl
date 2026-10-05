@@ -43,6 +43,33 @@ table customer_activity
 			)
 		lineageTag: 4b04c4cb-979f-454e-a8bc-3131c1573f76
 
+	measure 'clv bucket analysis text' = ```
+			
+					VAR Bins = SELECTEDVALUE(customer_activity[customer_lifetime_value (bins)])
+					RETURN
+						IF(
+							ISBLANK(Bins),
+							"Select values from the chart to display details using this button",
+							"See the details for CLV up to: " & FORMAT(Bins, "#,##0")
+						)
+			```
+		lineageTag: 9eaa54da-b64a-4d73-9e7d-0fb2bf53e2b0
+
+	measure 'segment churn value map text' = ```
+			
+					VAR segment = SELECTEDVALUE(customer_activity[rf_segment_label])
+			        VAR tekstifchurned = 
+			            IF([Churn Rate]>0, " churned", " not churned")
+			                
+					RETURN
+						IF(
+							ISBLANK(segment),
+							"Select values from the chart to display details using this button",
+							"See the details for" & tekstifchurned & " " &segment & " segment"
+						)
+			```
+		lineageTag: bdaf9552-c4ca-46e1-af63-05c224d50a68
+
 	column client_sk
 		dataType: int64
 		formatString: 0
