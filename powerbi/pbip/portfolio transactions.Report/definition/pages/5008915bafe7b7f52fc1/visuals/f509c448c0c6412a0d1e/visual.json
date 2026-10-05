@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "f509c448c0c6412a0d1e",
   "position": {
-    "x": 298.33333333333337,
-    "y": 62.5,
+    "x": 298.46153846153845,
+    "y": 62.307692307692307,
     "z": 1000,
-    "height": 109.09090909090908,
+    "height": 109.23076923076923,
     "width": 630,
     "tabOrder": 1000
   },
@@ -41,7 +41,8 @@
                 }
               },
               "queryRef": "revenue_trend.Transaction count",
-              "nativeQueryRef": "Transaction count"
+              "nativeQueryRef": "Transactions",
+              "displayName": "Transactions"
             },
             {
               "field": {

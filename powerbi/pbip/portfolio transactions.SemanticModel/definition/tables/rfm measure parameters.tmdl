@@ -40,9 +40,9 @@ table 'rfm measure parameters'
 		mode: import
 		source =
 				{
-				    ("clv", NAMEOF('rfm_segments'[clv]), 0),
-				    ("avg trx", NAMEOF('rfm_segments'[avg transaction value rfm]), 1),
-				    ("recency days", NAMEOF('rfm_segments'[recency_days]), 2),
+				    ("CLV", NAMEOF('rfm_segments'[clv]), 0),
+				    ("Avg trx", NAMEOF('rfm_segments'[avg transaction value rfm]), 1),
+				    ("Recency days", NAMEOF('rfm_segments'[recency_days]), 2),
 				    ("Recency", NAMEOF('rfm_segments'[R_score]), 3),
 				    ("Frequency", NAMEOF('rfm_segments'[F_score]), 4),
 				    ("Monetary", NAMEOF('rfm_segments'[M_score]), 5)

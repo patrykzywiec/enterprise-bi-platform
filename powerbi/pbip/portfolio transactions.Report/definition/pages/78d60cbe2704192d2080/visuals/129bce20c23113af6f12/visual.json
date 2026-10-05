@@ -62,8 +62,9 @@
                 }
               },
               "queryRef": "merchant_performance.country",
-              "nativeQueryRef": "country",
-              "active": true
+              "nativeQueryRef": "Country",
+              "active": true,
+              "displayName": "Country"
             },
             {
               "field": {
@@ -77,8 +78,9 @@
                 }
               },
               "queryRef": "mcc_codes.combined_description",
-              "nativeQueryRef": "combined_description",
-              "active": true
+              "nativeQueryRef": "Description",
+              "active": true,
+              "displayName": "Description"
             },
             {
               "field": {
@@ -92,8 +94,9 @@
                 }
               },
               "queryRef": "merchant_performance.merchant_city",
-              "nativeQueryRef": "merchant_city",
-              "active": true
+              "nativeQueryRef": "City",
+              "active": true,
+              "displayName": "City"
             }
           ]
         }
@@ -185,7 +188,7 @@
                   "identityValues": [
                     {
                       "Literal": {
-                        "Value": "'Insurance Sales, Underwriting, and Premiums'"
+                        "Value": "'Service Stations ( with or without ancillary services)'"
                       }
                     }
                   ],

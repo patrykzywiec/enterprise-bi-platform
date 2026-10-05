@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "84b89a5689aeb66e4658",
   "position": {
     "x": 916.66666666666674,
@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "customer_activity.rf_segment_label",
-              "nativeQueryRef": "rf_segment_label",
-              "active": true
+              "nativeQueryRef": "Segment",
+              "active": true,
+              "displayName": "Segment"
             }
           ]
         },

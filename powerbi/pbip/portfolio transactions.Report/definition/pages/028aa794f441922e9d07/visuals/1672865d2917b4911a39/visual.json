@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "1672865d2917b4911a39",
   "position": {
     "x": 781.81818181818176,
@@ -99,8 +99,8 @@
                 }
               },
               "queryRef": "rfm_segments.clv",
-              "nativeQueryRef": "clv",
-              "displayName": "clv"
+              "nativeQueryRef": "CLV",
+              "displayName": "CLV"
             }
           ],
           "fieldParameters": [

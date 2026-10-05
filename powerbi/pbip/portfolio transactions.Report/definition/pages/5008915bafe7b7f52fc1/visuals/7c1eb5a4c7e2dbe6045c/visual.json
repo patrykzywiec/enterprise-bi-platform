@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "7c1eb5a4c7e2dbe6045c",
   "position": {
     "x": 916.48909183155752,
@@ -27,9 +27,9 @@
                 }
               },
               "queryRef": "merchant_performance.merchant_city",
-              "nativeQueryRef": "Merchant city",
+              "nativeQueryRef": "Merchant City",
               "active": true,
-              "displayName": "Merchant city"
+              "displayName": "Merchant City"
             }
           ]
         },

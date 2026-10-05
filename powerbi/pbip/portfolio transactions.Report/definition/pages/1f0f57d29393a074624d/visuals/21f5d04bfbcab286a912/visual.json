@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "21f5d04bfbcab286a912",
   "position": {
     "x": 0,
@@ -74,23 +74,6 @@
               "queryRef": "merchant_performance.Average transaction (merchant)",
               "nativeQueryRef": "Average transaction",
               "displayName": "Average transaction"
-            }
-          ],
-          "fieldParameters": [
-            {
-              "parameterExpr": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "merchant parameter"
-                    }
-                  },
-                  "Property": "merchant parameter"
-                }
-              },
-              "index": 1,
-              "length": 3,
-              "sortDirection": "Descending"
             }
           ]
         }
@@ -716,6 +699,48 @@
             }
           ]
         }
+      },
+      {
+        "name": "10f42d195646cd8315e5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "merchant_performance"
+              }
+            },
+            "Property": "Revenue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "98f1293839915a3f83e6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "merchant_performance"
+              }
+            },
+            "Property": "Transactions"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e1c815be397da9ef0a3d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "merchant_performance"
+              }
+            },
+            "Property": "Avg transaction"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

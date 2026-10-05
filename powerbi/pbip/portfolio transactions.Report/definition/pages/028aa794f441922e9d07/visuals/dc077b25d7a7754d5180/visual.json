@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "dc077b25d7a7754d5180",
   "position": {
     "x": 678.18181818181813,
@@ -133,7 +133,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "clv"
+                            "0": "CLV"
                           }
                         ]
                       }

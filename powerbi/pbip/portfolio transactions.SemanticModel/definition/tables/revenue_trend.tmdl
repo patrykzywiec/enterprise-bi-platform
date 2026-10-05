@@ -2,12 +2,14 @@ table revenue_trend
 	lineageTag: 44c4d553-f3f6-4150-a22b-81cbb0943fc0
 
 	measure 'Average transaction' = AVERAGEX(revenue_trend,revenue_trend[avg_transaction_value])
-		formatString: #,0.00
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
 		lineageTag: 94208918-f4e1-4f6d-9a60-fce22cda9af7
 
 	measure 'Total revenue' = SUMX(revenue_trend,revenue_trend[total_revenue])
-		formatString: #,0.0
+		formatString: \$#,0;(\$#,0);\$#,0
 		lineageTag: 4ce4b5bc-57f7-4f61-b5a9-74a5cadf166c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
 
 	measure 'Transaction count' = SUMX(revenue_trend,revenue_trend[transaction_count])
 		formatString: #,0.0

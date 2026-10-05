@@ -59,5 +59,47 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "c049dc01a465704a6b7a",
+      "target": "b25896699f1034d6f6c8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c049dc01a465704a6b7a",
+      "target": "3fbea802865420765d32",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3fbea802865420765d32",
+      "target": "c049dc01a465704a6b7a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3fbea802865420765d32",
+      "target": "b25896699f1034d6f6c8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3fbea802865420765d32",
+      "target": "359fa77ac358dde320b0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1672865d2917b4911a39",
+      "target": "b25896699f1034d6f6c8",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1672865d2917b4911a39",
+      "target": "3fbea802865420765d32",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "b25896699f1034d6f6c8",
+      "target": "1672865d2917b4911a39",
+      "type": "DataFilter"
+    }
+  ]
 }

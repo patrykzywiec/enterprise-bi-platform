@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "rfm_segments.clients",
-              "nativeQueryRef": "clients"
+              "nativeQueryRef": "Clients",
+              "displayName": "Clients"
             },
             {
               "field": {
@@ -41,7 +42,8 @@
                 }
               },
               "queryRef": "rfm_segments.clv",
-              "nativeQueryRef": "clv"
+              "nativeQueryRef": "CLV",
+              "displayName": "CLV"
             },
             {
               "field": {
@@ -55,7 +57,8 @@
                 }
               },
               "queryRef": "rfm_segments.avg transaction value rfm",
-              "nativeQueryRef": "avg transaction value rfm"
+              "nativeQueryRef": "Avg trx",
+              "displayName": "Avg trx"
             },
             {
               "field": {
@@ -69,7 +72,8 @@
                 }
               },
               "queryRef": "rfm_segments.churn rate rfm",
-              "nativeQueryRef": "churn rate rfm"
+              "nativeQueryRef": "Churn rate",
+              "displayName": "Churn rate"
             }
           ]
         }

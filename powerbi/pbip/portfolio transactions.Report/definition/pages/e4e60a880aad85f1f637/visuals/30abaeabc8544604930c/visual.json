@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "30abaeabc8544604930c",
   "position": {
-    "x": 110.90909090909091,
-    "y": 69.090909090909079,
+    "x": 111.0410094637224,
+    "y": 62.250262881177711,
     "z": 10000,
-    "height": 105.45454545454544,
-    "width": 757.27272727272725,
+    "height": 111.88222923238696,
+    "width": 757.09779179810732,
     "tabOrder": 10000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "customer_activity.avg clv",
-              "nativeQueryRef": "avg clv"
+              "nativeQueryRef": "Avg CLV",
+              "displayName": "Avg CLV"
             },
             {
               "field": {
@@ -527,6 +528,48 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "787de043511a5f9988b0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "customer_activity"
+              }
+            },
+            "Property": "avg clv"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "56189bf649ecf88fd207",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "customer_activity"
+              }
+            },
+            "Property": "Avg Recency"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3a71d854bc32886a76c0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "customer_activity"
+              }
+            },
+            "Property": "Churn Rate"
+          }
+        },
+        "type": "Advanced"
       }
     ],
     "filterSortOrder": "Custom"
