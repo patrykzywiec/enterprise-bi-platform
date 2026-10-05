@@ -52,6 +52,11 @@
       "source": "5b150c63280dd7827d64",
       "target": "086f87bf9f642f86ae17",
       "type": "NoFilter"
+    },
+    {
+      "source": "086f87bf9f642f86ae17",
+      "target": "ac618d1cf745ddb22b62",
+      "type": "HighlightFilter"
     }
   ]
 }
