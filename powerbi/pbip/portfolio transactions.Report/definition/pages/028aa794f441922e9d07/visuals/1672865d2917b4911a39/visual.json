@@ -53,19 +53,19 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "rfm_segments"
                     }
                   },
-                  "Property": "F_score"
+                  "Property": "avg transaction value rfm"
                 }
               },
-              "queryRef": "rfm_segments.F_score",
-              "nativeQueryRef": "Frequency",
+              "queryRef": "rfm_segments.avg transaction value rfm",
+              "nativeQueryRef": "Avg trx",
               "active": true,
-              "displayName": "Frequency"
+              "displayName": "Avg trx"
             }
           ],
           "fieldParameters": [

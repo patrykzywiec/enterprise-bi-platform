@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "dfa4d9891bc25d057515",
   "position": {
     "x": 781.81818181818176,
@@ -81,7 +81,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'''rfm_segments''[F_score]'"
+                                "Value": "'''rfm_segments''[avg transaction value rfm]'"
                               }
                             }
                           ]
@@ -109,7 +109,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'''rfm_segments''[F_score]'"
+                                      "Value": "'''rfm_segments''[avg transaction value rfm]'"
                                     }
                                   }
                                 ]
@@ -133,7 +133,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "Frequency"
+                            "0": "Avg trx"
                           }
                         ]
                       }

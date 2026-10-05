@@ -100,6 +100,11 @@
       "source": "b25896699f1034d6f6c8",
       "target": "1672865d2917b4911a39",
       "type": "DataFilter"
+    },
+    {
+      "source": "359fa77ac358dde320b0",
+      "target": "b25896699f1034d6f6c8",
+      "type": "NoFilter"
     }
   ]
 }
