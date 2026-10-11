@@ -10,6 +10,13 @@ The platform is designed as a realistic portfolio project that combines data eng
 
 ---
 
+## Portfolio demo
+
+- [View the exported Power BI report (PDF)](powerbi/exports/portfolio-report.pdf)
+- [Watch the report walkthrough on YouTube](https://youtu.be/GG1dXlAlg-U)
+
+---
+
 ## Executive Summary
 
 Many organizations collect large volumes of transactional data but struggle to transform it into actionable insights.
